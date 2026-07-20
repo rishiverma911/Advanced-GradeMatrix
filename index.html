@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Advance GradeMatrix</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-mark" aria-hidden="true">∑</div>
+    <div>
+      <p class="eyebrow">Mathematics &amp; Python Laboratory <span id="apiStatus"></span></p>
+      <h1>Advance GradeMatrix</h1>
+      <p class="header-copy">A polished workspace for probability, linear algebra, statistics, and time-series analysis.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="tabs" role="tablist" aria-label="Assignment sections">
+      <button class="tab active" data-tab="linear">Part 1 <span>Linear Algebra &amp; Statistics</span></button>
+      <button class="tab" data-tab="series">Part 2 <span>Time-Series Analysis</span></button>
+    </div>
+
+    <section id="linear" class="panel active">
+      <article class="card configuration-card">
+        <div class="card-heading"><div><p class="section-kicker">01 / Covariance</p><h2>Covariance Matrix Calculator</h2></div><p>Generate independent simulated variables and compare the manual matrix calculation with NumPy.</p></div>
+        <div class="form-grid four"><label>Variables<input id="rows" type="number" min="2" value="3"></label><label>Observations<input id="columns" type="number" min="2" value="100"></label><label>Mean<input id="matrixMean" type="number" value="0"></label><label>Standard deviation<input id="matrixStd" type="number" min="0.1" step="0.1" value="1"></label></div>
+        <button class="primary" id="covarianceBtn">Generate &amp; calculate</button>
+      </article>
+
+      <div class="matrix-grid"><article class="card"><h2>Manual covariance</h2><div id="manualCovariance"></div></article><article class="card"><h2>NumPy <code>np.cov()</code></h2><div id="builtinCovariance"></div></article></div>
+      <article class="card"><h2>Correlation matrix</h2><div id="correlation"></div></article>
+
+      <div class="section-divider"><span>Markov chains</span></div>
+      <article class="card configuration-card">
+        <div class="card-heading"><div><p class="section-kicker">02 / Probability</p><h2>Markov Chain Simulator</h2></div><p>Simulate state transitions and find long-run probabilities using the transition matrix eigenvector.</p></div>
+        <p class="label-title">Example presets</p><div class="preset-row"><button class="preset" data-preset="weather">Weather model</button><button class="preset" data-preset="traffic">Traffic flow</button><button class="preset" data-preset="economic">Economic states</button></div>
+        <p class="label-title">3 × 3 transition matrix</p><div class="transition-grid" id="transitionGrid"></div>
+        <div class="form-grid two"><label>Starting state (0–2)<input id="startingState" type="number" min="0" max="2" value="0"></label><label>Number of steps <span id="stepsLabel">50</span><input id="steps" type="range" min="5" max="200" value="50"></label></div>
+        <button class="primary" id="markovBtn">Simulate Markov chain</button>
+      </article>
+      <article class="card chart-card"><h2>State probability evolution</h2><canvas id="markovChart" height="250"></canvas></article>
+      <div class="matrix-grid"><article class="card"><h2>Steady-state probabilities</h2><div id="steadyState" class="probabilities"></div></article><article class="card"><h2>State sequence <span>(first 50)</span></h2><p id="stateSequence" class="sequence"></p></article></div>
+    </section>
+
+    <section id="series" class="panel">
+      <article class="card configuration-card">
+        <div class="card-heading"><div><p class="section-kicker">03 / Time series</p><h2>Time-Series Configuration</h2></div><p>Explore rolling averages, expanding variability, and observations outside the expected range.</p></div>
+        <div class="form-grid five"><label>Days<input id="days" type="number" min="30" value="365"></label><label>Mean<input id="seriesMean" type="number" value="50"></label><label>Standard deviation<input id="seriesStd" type="number" min="1" value="10"></label><label>Rolling window<input id="rollingWindow" type="number" min="2" value="7"></label><label>Expanding window<input id="expandingWindow" type="number" min="2" value="30"></label></div>
+        <button class="primary" id="seriesBtn">Generate &amp; analyze</button>
+      </article>
+      <div class="export-row"><button class="export" id="jsonBtn">Export JSON</button><button class="export" id="csvBtn">Export CSV</button></div>
+      <article class="card chart-card"><h2>Outlier detection <span>(±2σ)</span></h2><canvas id="outlierChart" height="330"></canvas></article>
+      <article class="card chart-card"><h2>Rolling mean &amp; expanding deviation</h2><canvas id="seriesChart" height="330"></canvas></article>
+      <article class="card"><h2>Summary statistics</h2><div id="statistics" class="statistics"></div></article>
+    </section>
+  </main>
+
+  <footer><span>Advance GradeMatrix</span><p>Advanced Applications in Math and Python · Rishi Verma</p></footer>
+  <script src="app.js"></script>
+</body>
+</html>
